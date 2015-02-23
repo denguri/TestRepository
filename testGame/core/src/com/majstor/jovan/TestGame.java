@@ -37,17 +37,30 @@ public class TestGame implements ApplicationListener {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
-		if (ScreenManager.getCurrentScreen() != null)
+		if (ScreenManager.getCurrentScreen() != null && !ScreenManager.getCurrentScreen().isPauseState())
 			ScreenManager.getCurrentScreen().update();
 		
 		if (ScreenManager.getCurrentScreen() != null)
 			ScreenManager.getCurrentScreen().render(batch);
 		
-		if (ScreenManager.getCurrentScreen().type() == 1 && Gdx.input.isKeyPressed(Keys.R)) {
+		if (/*ScreenManager.getCurrentScreen().type() == 1 &&*/ Gdx.input.isKeyPressed(Keys.R)) {
 			Gdx.app.log(TAG, "Restart game!!!");
 			dispose();
 			create();
 			resize(WIDTH, HEIGHT);
+		}
+		
+		if (ScreenManager.getCurrentScreen().type() != 1 && Gdx.input.isKeyJustPressed(Keys.P)) {
+			if (!ScreenManager.getCurrentScreen().isPauseState())
+			{
+				Gdx.app.log(TAG, "PAUSE!!!");
+				pause();
+			}
+			else
+			{
+				Gdx.app.log(TAG, "RESUME!!!");
+				resume();
+			}
 		}
 	}
 
@@ -66,8 +79,8 @@ public class TestGame implements ApplicationListener {
 
 	@Override
 	public void resume() {
-		// TODO Auto-generated method stub
-		
+		if (ScreenManager.getCurrentScreen() != null)
+			ScreenManager.getCurrentScreen().resume();
 	}
 
 }

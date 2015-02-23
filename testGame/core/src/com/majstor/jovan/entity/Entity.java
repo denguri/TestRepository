@@ -10,11 +10,17 @@ public abstract class Entity {
 
 	protected Texture texture;
 	protected Vector2 position, direction;
+	protected ColorEnum color;
 	
-	public Entity(Texture texture, Vector2 position, Vector2 direction) {
+	public ColorEnum getColor() {
+		return color;
+	}
+
+	public Entity(Texture texture, Vector2 position, Vector2 direction, ColorEnum color) {
 		this.texture = texture;
 		this.position = position;
 		this.direction = direction;
+		this.color = color;
 	}
 	
 	public abstract void update();

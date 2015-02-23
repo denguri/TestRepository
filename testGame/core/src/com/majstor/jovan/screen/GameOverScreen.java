@@ -63,5 +63,10 @@ public class GameOverScreen extends Screen {
 	public int type() {
 		return 1;
 	}
+	
+	@Override
+	public boolean isPauseState() {
+		return false;
+	}
 
 }

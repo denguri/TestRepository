@@ -10,11 +10,18 @@ public class GameScreen extends Screen {
 
 	private OrthoCamera camera;
 	private EntityManager entityManager;
+	private boolean pauseState;
 	
+	@Override
+	public boolean isPauseState() {
+		return pauseState;
+	}
+
 	@Override
 	public void create() {
 		camera = new OrthoCamera();
 		entityManager = new EntityManager(10, camera);
+		pauseState = false;
 	}
 
 	@Override
@@ -43,12 +50,12 @@ public class GameScreen extends Screen {
 
 	@Override
 	public void pause() {
-		
+		pauseState = true;
 	}
 
 	@Override
 	public void resume() {
-		
+		pauseState = false;
 	}
 
 	@Override

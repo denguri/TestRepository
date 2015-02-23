@@ -20,4 +20,5 @@ public abstract class Screen {
 	
 	public abstract int type();
 	
+	public abstract boolean isPauseState();
 }
